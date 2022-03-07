@@ -21,11 +21,10 @@ const querySalaries = async () => {
 };
 
 /**
- * Query for salaries
+ * Query for Total salaries in Year
  * @returns {Promise<QueryResult>}
  */
 const queryTopSalaryUsersInYear = async (totalUsers, year) => {
-  console.log(year, "year");
   const salaries = await Salary.aggregate([
     { $group: { _id: "$user", salary: { $sum: "$salary" } } },
     {

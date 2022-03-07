@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { toJSON, paginate } = require("./plugins");
 
 const salarySchema = mongoose.Schema(
   {
@@ -22,9 +21,6 @@ const salarySchema = mongoose.Schema(
   }
 );
 
-// add plugin that converts mongoose to json
-salarySchema.plugin(toJSON);
-salarySchema.plugin(paginate);
 
 
 /**

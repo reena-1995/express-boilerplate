@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
-const { toJSON, paginate } = require("./plugins");
 
 const userSchema = mongoose.Schema(
   {
@@ -35,9 +34,6 @@ const userSchema = mongoose.Schema(
   }
 );
 
-// add plugin that converts mongoose to json
-userSchema.plugin(toJSON);
-userSchema.plugin(paginate);
 
 /**
  * Check if email is taken
