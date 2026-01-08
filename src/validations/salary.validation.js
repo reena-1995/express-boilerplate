@@ -12,6 +12,7 @@ const getSalaries = {
   query: Joi.object().keys({}),
 };
 
+
 module.exports = {
   createSalary,
   getSalaries,

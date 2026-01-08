@@ -11,7 +11,6 @@ const userSchema = mongoose.Schema(
     email: {
       type: String,
       required: true,
-      unique: true,
       trim: true,
       lowercase: true,
       validate(value) {
@@ -19,6 +18,16 @@ const userSchema = mongoose.Schema(
           throw new Error("Invalid email.");
         }
       },
+    },
+    password: {
+      type: String,
+      required: true,
+      minlength: 6,
+    },
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user",
     },
     dateOfBirth: {
       type: Date,
@@ -28,6 +37,9 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    refreshToken: {
+      type: String,
+    },
   },
   {
     timestamps: true,
@@ -35,16 +47,6 @@ const userSchema = mongoose.Schema(
 );
 
 
-/**
- * Check if email is taken
- * @param {string} email - The user's email
- * @param {ObjectId} [excludeUserId] - The id of the user to be excluded
- * @returns {Promise<boolean>}
- */
-userSchema.statics.isEmailTaken = async function (email, excludeUserId) {
-  const user = await this.findOne({ email, _id: { $ne: excludeUserId } });
-  return !!user;
-};
 
 /**
  * @typedef User

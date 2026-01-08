@@ -5,7 +5,7 @@ const { salaryService } = require("../services");
 const createSalary = catchAsync(async (req, res) => {
   const salary = await salaryService.createSalary({
     ...req.body,
-    user: req.body.user.id,
+    user: req.body.user._id,
   });
   res.status(httpStatus.CREATED).send(salary);
 });

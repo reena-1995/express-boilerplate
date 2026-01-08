@@ -1,9 +1,12 @@
 const express = require("express");
 const validate = require("../../middleware/validate");
+const auth = require("../../middleware/auth");
 const salaryValidation = require("../../validations/salary.validation");
 const salaryController = require("../../controllers/salary.controller");
 
 const router = express.Router();
+
+router.use(auth);
 
 router
   .route("/")
